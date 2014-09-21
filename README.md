@@ -15,6 +15,7 @@ makeCacheMatrix` creates a list containing a function to
 3.  set the value of the inverse of the matrix
 4.  get the value of the inverse of the matrix
 
+CODE
 
     makeCacheMatrix <- function(x = matrix()) {
             inv <- NULL
@@ -22,6 +23,7 @@ makeCacheMatrix` creates a list containing a function to
                     x <<- y
                     inv <<- NULL
             }
+
             get <- function() x
             setinverse <- function(inverse) inv <<- inverse
             getinverse <- function() inv
@@ -29,6 +31,8 @@ makeCacheMatrix` creates a list containing a function to
                  setinverse = setinverse,
                  getinverse = getinverse)
     }
+
+END CODE
 
 The following function calculates the inverse of the matrix created with the above function. However, it first checks to see if the
 inverse has already been calculated. If so, it `gets the inverse from the cache and skips the computation. Otherwise, it calculates the inverse of
@@ -42,6 +46,7 @@ cacheSolve` should retrieve the inverse from the cache.
 Computing the inverse of a square matrix can be done with the `solve`function in R. For example, if `X` is a square invertible matrix, then
 solve(X)` returns its inverse.
 
+CODE
     cacheSolve <- function(x, ...) {
             inv <- x$getinverse()
             if(!is.null(inv)) {
@@ -53,6 +58,7 @@ solve(X)` returns its inverse.
             x$setinverse(inv)
             inv
     }
+END CODE
 
 #The above code has been adapted from the code in Assignment 2.
 
